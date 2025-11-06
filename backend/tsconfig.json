@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     // File Layout
-    "rootDir": "./",
+    "rootDir": "./src",
     "outDir": "./dist",
 
     // Environment Settings
@@ -11,8 +11,8 @@
     "types": ["node"],
 
     // JavaScript Support
-    "allowJs": true,
-    "checkJs": true,
+    "allowJs": false,
+    "checkJs": false,
 
     // Other Outputs
     "sourceMap": true,
@@ -32,6 +32,6 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["*.js", "*.ts", "src/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }

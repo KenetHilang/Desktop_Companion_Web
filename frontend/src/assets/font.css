@@ -1,3 +1,27 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+/* Pixelify Sans font is loaded via Google Fonts in index.html */
+
+/* Apply Pixelify Sans as the default font family */
+* {
+  font-family: "Pixelify Sans", cursive, sans-serif;
+}
+
+body {
+  font-family: "Pixelify Sans", cursive, sans-serif;
+}
+
+/* Font weight utilities */
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
