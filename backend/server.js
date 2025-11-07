@@ -100,6 +100,14 @@ app.post('/api/analyze-sentiment', async (req, res) => {
             status: apiResponse.data.status
         });
 
+        const ESP_IP = 'http://10.27.83.237'; //ip esp
+        try {
+            await axios.post(`${ESP_IP}/receive-label`, { label: labelToSend });
+            console.log(`label ${labelToSend} to ip : ${ESP_IP}`);
+        } catch (err) {
+            console.error('failed to send:', err.message);
+        }
+
     } catch (/** @type {any} */ error) {
         // Ini akan mencetak error asli (seperti 504) ke terminal backend
         console.error('Error calling external API:', error.message);
@@ -112,6 +120,7 @@ app.post('/api/analyze-sentiment', async (req, res) => {
         res.status(500).json({ error: 'Failed to analyze sentiment' }); 
     }
 });
+
 
 // Jalankan server
 app.listen(PORT, () => {
