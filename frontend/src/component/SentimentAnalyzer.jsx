@@ -15,15 +15,13 @@ function SentimentAnalyzer() {
         setError('');
         setResultLabel('');
         const sentimentInterpreter = {
-            0: "Very Negative",
-            1: "Negative",
-            2: "Neutral",
-            3: "Positive",
-            4: "Very Positive"
+            "Positive": 0,
+            "Neutral": 1,
+            "Negative": 2
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/api/analyze-sentiment', {
+            const response = await axios.post('https://innless-paloma-xerographic.ngrok-free.dev/sentiment', {
                 text: text
             });
 
