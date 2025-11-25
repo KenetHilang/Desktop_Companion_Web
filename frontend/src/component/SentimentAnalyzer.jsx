@@ -17,19 +17,16 @@ function SentimentAnalyzer() {
         setIsLoading(true);
         setError('');
         setResultLabel('');
-        const sentimentInterpreter = {
-            "Positive": 0,
-            "Neutral": 1,
-            "Negative": 2
-        };
+        
 
         try {
             const response = await axios.post('https://innless-paloma-xerographic.ngrok-free.dev/sentiment', {
                 text: text
             });
+            console.log('API Response:', response);
 
             setResultLabel(response.data.label);
-            setResultInterpretation(sentimentInterpreter[response.data.label] || "Unknown");
+            setResultInterpretation(response.data.value);
 
         } catch (err) {
             setError('Analysis failed. Please try again.');
@@ -39,7 +36,6 @@ function SentimentAnalyzer() {
         }
     };
 
-    // 🎙️ Start or stop microphone recognition
     const handleMicToggle = () => {
         if (isRecording) {
             recognitionRef.current.stop();
@@ -52,7 +48,7 @@ function SentimentAnalyzer() {
             }
 
             const recognition = new SpeechRecognition();
-            recognition.lang = 'en-US';
+            recognition.lang = 'id-ID';
             recognition.continuous = true;
             recognition.interimResults = true;
 
@@ -69,13 +65,11 @@ function SentimentAnalyzer() {
                     }
                 }
 
-                // 👉 Tambahkan hasil speech ke teks yang sudah ada
                 setText(prev => {
                     const trimmedPrev = prev.trim();
                     const newPart = finalTranscript.trim();
-                    if (!newPart) return prev; // ignore empty results
+                    if (!newPart) return prev; 
 
-                    // Only add a space if the previous text doesn't already end with punctuation or space
                     if (trimmedPrev === '') return newPart;
                     if (/[.?!\s]$/.test(trimmedPrev)) {
                         return trimmedPrev + ' ' + newPart;
@@ -96,9 +90,9 @@ function SentimentAnalyzer() {
         }
     };
 
-    // 🧹 Clear text and result — only when not recording
+    
     const handleClear = () => {
-        if (isRecording) return; // ignore when mic is on
+        if (isRecording) return; 
         setText('');
         setResultLabel('');
         setResultInterpretation('');
@@ -133,9 +127,9 @@ function SentimentAnalyzer() {
         <button
             onClick={handleClear}
             disabled={isRecording}
-            className="flex-1 px-4 py-2 text-lg font-semibold text-white bg-white/20 backdrop-blur-md border-2 border-white/40 rounded-lg hover:bg-white/30 hover:border-white/60 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300"
+            className="flex-1 px-4 py-2 text-lg font-semibold text-white bg-red-500/20 backdrop-blur-md border-2 border-red-400 rounded-lg hover:bg-red-500/30 hover:border-red-400/60 focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300"
         >
-            🧹 Clear
+            Clear
         </button>
     </div>
 
